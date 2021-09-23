@@ -1,26 +1,35 @@
-import { Carousel, Col, Container, Row } from 'react-bootstrap'
-import dishes from '../data/menu.json'
-import { useState } from 'react'
-// import DishComments from './DishComments'
-import upperName from '../helpers/lib'
+import { Carousel, Col, Container, Row } from "react-bootstrap";
+import dishes from "../data/menu.json";
+import { useState } from "react";
+import DishComments from './DishComments'
+import upperName from "../helpers/lib";
 
 interface FunctionalCompontentProps {
-    title: string
-    
+  title: string;
 }
 
-interface Dish{
-    id: number
-    name: string;
-    image: string;
-    category: string;
-    label: string;
-    price: string;
-    description: string;
-    
+// interface Comments {
+//   id: number;
+//   rating: number;
+//   comment: string;
+//   author: string;
+//   date: string;
+// }
+
+interface Dish {
+  id: number;
+  name: string;
+  image: string;
+  category: string;
+  label: string;
+  price: string;
+  description: string;
 }
-const Home = ({ title } : FunctionalCompontentProps) => {
-  const [selected, setSelected] = useState<Dish[]>([])
+
+
+
+const Home = ({ title }: FunctionalCompontentProps) => {
+  const [selected, setSelected] = useState<Dish[]>([]);
 
   return (
     <Container>
@@ -32,11 +41,15 @@ const Home = ({ title } : FunctionalCompontentProps) => {
             {dishes.map((dish, i) => (
               <Carousel.Item
                 key={dish.id}
-                onClick={() => {
-                  setSelected(dish)
-                }}
+                // onClick={() => {
+                //   setSelected(dish);
+                // }}
               >
-                <img className="d-block w-100" src={dish.image} alt={'slide number ' + (i + 1)} />
+                <img
+                  className="d-block w-100"
+                  src={dish.image}
+                  alt={"slide number " + (i + 1)}
+                />
                 <Carousel.Caption>
                   <h3>{dish.name}</h3>
                   <p>{dish.description}</p>
@@ -48,7 +61,7 @@ const Home = ({ title } : FunctionalCompontentProps) => {
         <DishComments selectedPasta={selected} />
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
